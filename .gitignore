@@ -1,0 +1,39 @@
+# ── Python ──
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+backend/.venv/
+
+# ── Node ──
+frontend/node_modules/
+frontend/dist/
+
+# ── Secrets & local env ──
+.env
+.env.local
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# ── Runtime / local DB ──
+backend/runs/
+backend/app.db
+*.log
+
+# ── GIS / raster data（体积很大，请单独下载，见 README）──
+backend/data/CLCD/
+backend/data/boundaries/
+backend/data/boundary/
+backend/data/xianjibd/
+backend/data/*.bak.json
+
+# ── Large media（请放网盘，见 README）──
+frontend/public/*.mp4
+*.mp4
+
+# ── OS / IDE noise ──
+.DS_Store
+Thumbs.db
+*.swp
+.idea/

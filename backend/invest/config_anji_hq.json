@@ -1,0 +1,11 @@
+{
+  "workspace_dir": "D:/invest",
+  "lulc_tif": "CLCD_2023_Anji_5class.tif",
+  "threats_table_path": "安吉县威胁表格.csv",
+  "sensitivity_table_path": "安吉县敏感性表格.csv",
+  "cropland_tif": "CLCD_2023_Anji_cropland.tif",
+  "residential_tif": "CLCD_2023_Anji_residential.tif",
+  "half_saturation_constant": 0.5,
+  "results_suffix": "",
+  "map_title": "安吉县生境质量评分"
+}

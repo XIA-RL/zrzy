@@ -1,0 +1,6 @@
+lucode,LULC_Name,C_above,C_below,C_soil,C_dead
+1,gd,10,8,34.6,1
+2,ld,23.79,10,90.51,8
+3,cd,12,15,80,6
+4,water,0,0,0,0
+5,jmyd,0,0,20,0

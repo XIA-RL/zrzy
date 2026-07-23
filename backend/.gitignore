@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# runtime artifacts
+runs/
+app.db
+
+# local env
+.env
+
+# large GIS data (keep catalog.json / regions_national.json)
+data/CLCD/
+data/boundaries/
+data/boundary/
+data/xianjibd/
+data/*.bak.json

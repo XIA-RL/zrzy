@@ -1,0 +1,10 @@
+{
+  "workspace_dir": "D:/invest",
+  "lulc_tif": "CLCD_2023_Anji_5class.tif",
+  "carbon_csv": "碳密度表格.csv",
+  "calc_sequestration": false,
+  "price_per_metric_ton_of_c": 43.0,
+  "discount_rate": 7.0,
+  "results_suffix": "",
+  "map_title": "安吉县碳储量分布"
+}

@@ -1,0 +1,7 @@
+{
+  "region_code": "anji",
+  "region_name": "安吉县",
+  "province": "zhejiang",
+  "lulc_2023_path": "../CLCD_v01_2023_albert_province/CLCD_v01_2023_albert_zhejiang.tif",
+  "aoi_path": "../gis/BOUNT_poly.shp"
+}

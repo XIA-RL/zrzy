@@ -1,0 +1,3 @@
+threat,max_dist,weight,decay,cur_path
+GD,4,0.6,linear,CLCD_2023_Anji_cropland.tif
+JMYD,8,1,exponential,CLCD_2023_Anji_residential.tif
