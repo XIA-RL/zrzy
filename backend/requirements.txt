@@ -1,10 +1,19 @@
+# 后端 Python 依赖（在 backend/ 下一键安装）：
+#   pip install -r requirements.txt
+#
+# 另需本机软件（无法用 pip 安装）：SAGA GIS、QGIS（仅 PIPELINE_MODE=real）
+
 fastapi>=0.115
 uvicorn[standard]>=0.30
 httpx>=0.27
 python-dotenv>=1.0
+pydantic>=2.0
+
 pyshp>=2.3.1
-# 地图栅格范围 API 需要（制图脚本同样需要）
 rasterio>=1.3.0
 pyproj>=3.6.0
+numpy>=1.24.0
 Pillow>=10.0.0
 matplotlib>=3.8.0
+
+natcap.invest>=3.14.0

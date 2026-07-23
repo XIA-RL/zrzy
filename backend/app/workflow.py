@@ -434,6 +434,7 @@ def run_real_workflow_sync(
     def _write_job_carbon_config() -> Path:
         base_cfg = json.loads(carbon_config.read_text(encoding="utf-8"))
         base_cfg["workspace_dir"] = str(invest_work_dir)
+        base_cfg["work_dir"] = str(invest_work_dir)
         base_cfg["lulc_tif"] = invest_lulc_name
         base_cfg["carbon_csv"] = matched.carbon_csv.name
         base_cfg["map_title"] = legend_title("carbon", matched.region_name, year)

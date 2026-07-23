@@ -1,5 +1,5 @@
 {
-  "workspace_dir": "D:/invest",
+  "workspace_dir": "",
   "lulc_tif": "CLCD_2023_Anji_5class.tif",
   "threats_table_path": "安吉县威胁表格.csv",
   "sensitivity_table_path": "安吉县敏感性表格.csv",

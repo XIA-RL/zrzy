@@ -10,7 +10,7 @@ import subprocess
 from pathlib import Path
 
 _QGIS_SCRIPT = Path(__file__).resolve().parent / "qgis_render_map.py"
-_DEFAULT_BAT = Path(os.environ.get("QGIS_PYTHON_BAT", r"D:\download\QGIS\bin\python-qgis-ltr.bat"))
+_DEFAULT_BAT = Path(os.environ.get("QGIS_PYTHON_BAT", "") or "")
 
 
 def invoke_qgis_map(
@@ -25,8 +25,11 @@ def invoke_qgis_map(
     if not _QGIS_SCRIPT.is_file():
         raise FileNotFoundError(f"制图脚本不存在: {_QGIS_SCRIPT}")
     bat = Path(qgis_bat) if qgis_bat else _DEFAULT_BAT
-    if not bat.is_file():
-        raise FileNotFoundError(f"QGIS bat 不存在: {bat}")
+    if not str(bat) or not bat.is_file():
+        raise FileNotFoundError(
+            "QGIS bat 未配置或不存在。请在 backend/.env 设置 QGIS_PYTHON_BAT="
+            r"例如 C:\Program Files\QGIS 3.34.0\bin\python-qgis-ltr.bat"
+        )
     if not Path(input_tif).is_file():
         raise FileNotFoundError(f"输入栅格不存在: {input_tif}")
 

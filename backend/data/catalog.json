@@ -28566,7 +28566,7 @@
   "invest": {
     "config_json": "invest/config_anji_hq.json",
     "carbon_config_json": "invest/config_anji_carbon.json",
-    "work_dir": "D:/invest"
+    "work_dir": ""
   },
   "saga": {
     "clip_tool_index": 7

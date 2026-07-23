@@ -67,7 +67,13 @@ def _write_threats_with_abspaths(original_csv: Path, work_dir: Path, output_csv:
 
 def run(config_path: Path) -> None:
     cfg = json.loads(config_path.read_text(encoding="utf-8"))
-    work_dir = Path(cfg.get("workspace_dir") or cfg.get("work_dir") or "D:/invest")
+    # 优先级：config → 环境变量 INVEST_WORK_DIR（.env）→ 相对默认目录
+    work_dir = Path(
+        cfg.get("workspace_dir")
+        or cfg.get("work_dir")
+        or os.environ.get("INVEST_WORK_DIR")
+        or (Path(__file__).resolve().parents[1] / "runs" / "invest_work")
+    )
     work_dir.mkdir(parents=True, exist_ok=True)
 
     lulc_tif = work_dir / cfg["lulc_tif"]

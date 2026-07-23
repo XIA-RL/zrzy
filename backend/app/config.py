@@ -68,7 +68,7 @@ def load_settings() -> Settings:
     if not catalog_path.is_absolute():
         catalog_path = (base_dir / catalog_path).resolve()
 
-    saga_cmd = os.getenv("SAGA_CMD", r"D:\download\SAGA 9.12.0\saga_cmd.exe").strip()
+    saga_cmd = os.getenv("SAGA_CMD", "").strip()
 
     python_exe = os.getenv("PYTHON_EXE", sys.executable).strip()
     if not python_exe:
@@ -78,12 +78,16 @@ def load_settings() -> Settings:
         if conda_py.is_file() and not Path(python_exe).is_file():
             python_exe = str(conda_py)
 
-    qgis_python_bat = os.getenv(
-        "QGIS_PYTHON_BAT",
-        r"D:\download\QGIS\bin\python-qgis-ltr.bat",
-    ).strip()
+    qgis_python_bat = os.getenv("QGIS_PYTHON_BAT", "").strip()
 
-    invest_work_dir = Path(os.getenv("INVEST_WORK_DIR", "D:/invest"))
+    invest_work_env = os.getenv("INVEST_WORK_DIR", "").strip()
+    if invest_work_env:
+        invest_work_dir = Path(invest_work_env)
+    else:
+        invest_work_dir = (base_dir / "runs" / "invest_work").resolve()
+    if not invest_work_dir.is_absolute():
+        invest_work_dir = (base_dir / invest_work_dir).resolve()
+
     invest_config_env = os.getenv("INVEST_CONFIG", "").strip()
     invest_config = Path(invest_config_env or "invest/config_anji_hq.json")
     if not invest_config.is_absolute():

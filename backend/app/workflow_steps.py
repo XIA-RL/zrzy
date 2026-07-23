@@ -52,6 +52,17 @@ def prepare_lulc_year_step(
     这是多轮对话中用户回答年份后触发的后端动作。
     返回的 SessionArtifacts 会保存到 sessions 表，后续 InVEST 运行直接取用。
     """
+    if not saga_cmd or not Path(saga_cmd).is_file():
+        raise FileNotFoundError(
+            "未配置有效的 SAGA_CMD。请在 backend/.env 设置本机 saga_cmd.exe 绝对路径，"
+            r"例如 SAGA_CMD=C:\Program Files\SAGA-GIS\saga_cmd.exe"
+        )
+    if qgis_python_bat and not Path(qgis_python_bat).is_file():
+        raise FileNotFoundError(
+            f"QGIS_PYTHON_BAT 无效: {qgis_python_bat}。请在 backend/.env 改为本机 "
+            r"python-qgis-ltr.bat 路径"
+        )
+
     session_dir.mkdir(parents=True, exist_ok=True)
     year = matched.year
 
@@ -217,6 +228,9 @@ def run_invest_step(
 
     def _write_hq_config() -> Path:
         base_cfg = json.loads(invest_config.read_text(encoding="utf-8"))
+        # 始终以 .env 的 INVEST_WORK_DIR 为准，避免模板里的本机路径泄漏
+        base_cfg["workspace_dir"] = str(invest_work_dir)
+        base_cfg["work_dir"] = str(invest_work_dir)
         base_cfg["lulc_tif"] = invest_lulc_name
         base_cfg["cropland_tif"] = f"CLCD_{year}_Anji_cropland.tif"
         base_cfg["residential_tif"] = f"CLCD_{year}_Anji_residential.tif"
@@ -228,6 +242,8 @@ def run_invest_step(
 
     def _write_carbon_config() -> Path:
         base_cfg = json.loads(carbon_config.read_text(encoding="utf-8"))
+        base_cfg["workspace_dir"] = str(invest_work_dir)
+        base_cfg["work_dir"] = str(invest_work_dir)
         base_cfg["lulc_tif"] = invest_lulc_name
         # 找碳密度表文件名
         for f in invest_work_dir.glob("*.csv"):

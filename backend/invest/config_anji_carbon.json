@@ -1,5 +1,5 @@
 {
-  "workspace_dir": "D:/invest",
+  "workspace_dir": "",
   "lulc_tif": "CLCD_2023_Anji_5class.tif",
   "carbon_csv": "碳密度表格.csv",
   "calc_sequestration": false,

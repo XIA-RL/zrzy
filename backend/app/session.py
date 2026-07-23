@@ -45,7 +45,7 @@ class SessionRuntime:
     llm_base_url: str
     llm_api_key: str
     llm_model: str
-    qgis_python_bat: str = r"D:\download\QGIS\bin\python-qgis-ltr.bat"
+    qgis_python_bat: str = ""
 
 
 MODEL_LABELS = {"habitat_quality": "生境质量", "carbon_storage": "碳储量"}

@@ -121,11 +121,33 @@ def _continuous_renderer(layer, stops, vmin, vmax):
 
 # ── SVG 指北针 ────────────────────────────────────────────────────────────────
 
+def _qgis_install_roots() -> list[Path]:
+    """优先从环境变量 QGIS_PYTHON_BAT（.env）推导安装根目录。"""
+    roots: list[Path] = []
+    bat = os.environ.get("QGIS_PYTHON_BAT", "").strip()
+    if bat:
+        bat_path = Path(bat).resolve()
+        # .../QGIS/bin/python-qgis-ltr.bat → QGIS 安装根
+        if bat_path.parent.name.lower() == "bin":
+            roots.append(bat_path.parent.parent)
+        roots.append(bat_path.parent)
+    for candidate in (
+        Path(r"C:\Program Files\QGIS 3.34"),
+        Path(r"C:\Program Files\QGIS 3.38"),
+        Path(r"C:\Program Files\QGIS 3.40"),
+    ):
+        if candidate not in roots:
+            roots.append(candidate)
+    return roots
+
+
 def _north_svg(compass=False):
     names = ["NorthArrow_02.svg", "NorthArrow_10.svg", "NorthArrow_04.svg", "NorthArrow_01.svg"] if compass else ["NorthArrow_04.svg", "NorthArrow_01.svg"]
-    for base in [r"D:\download\QGIS", r"C:\Program Files\QGIS 3.34", r"C:\Program Files\QGIS 3.38"]:
+    for base in _qgis_install_roots():
+        if not base.is_dir():
+            continue
         for name in names:
-            hits = list(Path(base).glob(f"**/{name}"))
+            hits = list(base.glob(f"**/{name}"))
             if hits:
                 return str(hits[0])
     return None
